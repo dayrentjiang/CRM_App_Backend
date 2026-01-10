@@ -1,6 +1,10 @@
+//Business Logic
+
 import UserRepository from "../repositories/user.repository";
 import { User } from "../generated/prisma/client";
 import CreateUserDto from "../dtos/createUser.dto";
+import bcrypt from "bcryptjs";
+import serverConfig from "../config/server.config";
 
 class UserService {
   private userRepository: UserRepository;
@@ -34,6 +38,9 @@ class UserService {
 
   async create(userDetails: CreateUserDto): Promise<User> {
     try {
+      //Encrypt Password Here using bycrptjs
+      const salt = bcrypt.genSaltSync(serverConfig.SALT_ROUNDS);
+      userDetails.password = bcrypt.hashSync(userDetails.password, salt);
       const response: User = await this.userRepository.create(userDetails);
       return response;
     } catch (error) {

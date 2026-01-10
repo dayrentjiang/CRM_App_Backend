@@ -17,7 +17,9 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/body-parser": "^1.19.6",
+    "bcryptjs": "^3.0.3",
     "class-validator": "^0.14.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
