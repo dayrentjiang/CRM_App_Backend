@@ -18,6 +18,7 @@
   "dependencies": {
     "@prisma/client": "^6.19.0",
     "@types/body-parser": "^1.19.6",
+    "class-validator": "^0.14.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
