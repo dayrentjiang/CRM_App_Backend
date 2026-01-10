@@ -16,3 +16,10 @@ Creating a feature, start with
 - Repositories
 - Service (here all the things like every logic happen encypt, call AI functions or whatever it is)
 - Controller
+
+JWT LESSON
+when clients sign in they will get a JWT token which they will store in their local storage. this JWT contains
+
+1. Header
+2. Payload (the date, like id, email, role)
+3. signature (proves the token wasn't tampered)
