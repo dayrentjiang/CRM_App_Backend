@@ -23,3 +23,6 @@ when clients sign in they will get a JWT token which they will store in their lo
 1. Header
 2. Payload (the date, like id, email, role)
 3. signature (proves the token wasn't tampered)
+
+
+
