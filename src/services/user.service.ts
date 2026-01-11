@@ -8,6 +8,8 @@ import serverConfig from "../config/server.config";
 import SignInDto from "../dtos/signin.dto";
 import { sign } from "node:crypto";
 import { generateJWT } from "../utils/auth.utils";
+import NotFoundError from "../errors/notFound";
+import UnauthorizedError from "../errors/unauthorisedError";
 
 class UserService {
   private userRepository: UserRepository;
@@ -20,7 +22,7 @@ class UserService {
     try {
       const response: User | null = await this.userRepository.get(id);
       if (!response) {
-        throw { error: "userId not found" };
+        throw new NotFoundError("User", "email", id);
       }
       return response;
     } catch (error) {
@@ -56,7 +58,7 @@ class UserService {
     try {
       const user = await this.userRepository.getUserByEmail(signInDetail.email);
       if (!user) {
-        throw { err: "not found" };
+        throw new NotFoundError("User", "email", signInDetail.email);
       }
       //Match the password if user is found
       const doesPasswordMath = bcrypt.compareSync(
@@ -65,7 +67,7 @@ class UserService {
       );
 
       if (!doesPasswordMath) {
-        throw { err: "Wrong password" };
+        throw new UnauthorizedError();
       }
 
       //we will return a JWT token
